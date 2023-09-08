@@ -1,5 +1,6 @@
 #!/bin/bash
 
+gcc -S -masm=intel "$CFILE" -o "${CFILE%.c}.s"
 # Check if the CFILE variable is set
 if [ -z "$CFILE" ]; then
     echo "CFILE variable is not set. Please set it to the name of your C file."
@@ -25,4 +26,3 @@ if [ -f "$BASENAME.s" ]; then
 else
     echo "Failed to generate assembly code."
 fi
-
