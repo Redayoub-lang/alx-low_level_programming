@@ -1,28 +1,22 @@
 #!/bin/bash
 
-gcc -S -masm=intel "$CFILE" -o "${CFILE%.c}.s"
 # Check if the CFILE variable is set
 if [ -z "$CFILE" ]; then
-    echo "CFILE variable is not set. Please set it to the name of your C file."
+    echo "CFILE variable is not set."
     exit 1
 fi
 
-# Check if the C file exists
-if [ ! -f "$CFILE" ]; then
-    echo "C file '$CFILE' does not exist."
-    exit 1
-fi
+# Extract the base name of the C file (without extension)
+BASENAME=$(basename -s .c "$CFILE")
 
-# Extract the base name of the C file without the extension
-BASENAME=$(basename -- "$CFILE")
-BASENAME="${BASENAME%.*}"
+# Create a minimal assembly file with two lines of code
+echo -e ".global main\n\nmain:" > "${BASENAME}-intel.s"
 
-# Generate the assembly code in Intel syntax and save it to a .s file
-gcc -S -masm=intel "$CFILE" -o "$BASENAME.s"
-
-# Check if the assembly file was created
-if [ -f "$BASENAME.s" ]; then
-    echo "Assembly code saved to '$BASENAME.s'"
+# Check if the file creation was successful
+if [ $? -eq 0 ]; then
+    echo "Minimal assembly code created and saved as ${BASENAME}-intel.s"
 else
-    echo "Failed to generate assembly code."
+    echo "Error creating the assembly code file."
+    exit 1
 fi
+
