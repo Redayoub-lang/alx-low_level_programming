@@ -1,21 +1,2 @@
 #!/bin/bash
-
-# Check if the CFILE variable is set
-if [ -z "$CFILE" ]; then
-    echo "CFILE variable is not set."
-    exit 1
-fi
-
-# Extract the base name of the C file (without extension)
-BASENAME=$(basename -s .c "$CFILE")
-
-# Create a minimal assembly file with two lines of code
-echo -e ".global main\nmain:" > "100-intel"
-
-# Check if the file creation was successful
-if [ $? -eq 0 ]; then
-    echo "Minimal assembly code created and saved as 100-intel"
-else
-    echo "Error creating the assembly code file."
-    exit 1
-fi
+gcc -S -masm=intel $CFILE
