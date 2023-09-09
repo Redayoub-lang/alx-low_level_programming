@@ -1,20 +1,26 @@
 #include <unistd.h>
-#include <stdio.h>
 #include <stdlib.h>
 
+/**
+ * main - Entry point
+ *
+ * Description: This program writes a specific message to the standard error.
+ *
+ * Return: Always 1 (indicating an error)
+ */
 int main(void)
 {
-    ssize_t len;
     char *message = "and that piece of art is useful\" - Dora Korpar, 2015-10-19\n";
+    char *ptr = message;
+    int len = 0;
 
-    len = sizeof(message) - 1;  /* Calculate the length of the message */
-
-    if (write(STDERR_FILENO, message, len) != len)
+    while (*ptr)
     {
-        perror("Write error");
-        exit(1);
+        len++;
+        ptr++;
     }
 
+    write(STDERR_FILENO, message, len);
     return (1);
 }
 
