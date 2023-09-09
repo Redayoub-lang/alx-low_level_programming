@@ -7,7 +7,7 @@ int main(void)
     ssize_t len;
     char *message = "and that piece of art is useful\" - Dora Korpar, 2015-10-19\n";
 
-    len = sizeof(message) - 1;  // Calculate the length of the message
+    len = sizeof(message) - 1;  /* Calculate the length of the message */
 
     if (write(STDERR_FILENO, message, len) != len)
     {
