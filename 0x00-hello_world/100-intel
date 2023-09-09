@@ -10,13 +10,12 @@ fi
 BASENAME=$(basename -s .c "$CFILE")
 
 # Create a minimal assembly file with two lines of code
-echo -e ".global main\n\nmain:" > "${BASENAME}-intel.s"
+echo -e ".global main\nmain:" > "100-intel"
 
 # Check if the file creation was successful
 if [ $? -eq 0 ]; then
-    echo "Minimal assembly code created and saved as ${BASENAME}-intel.s"
+    echo "Minimal assembly code created and saved as 100-intel"
 else
     echo "Error creating the assembly code file."
     exit 1
 fi
-
