@@ -9,8 +9,12 @@
  */
 int main(void)
 {
-	Char quo[] = "and that piece of art is useful\"- Dora Korpar, 2015-10-19\n";
-	
-	whrite(1, quo, 59)
-	return (1);
+    char quo[] = "and that piece of art is useful\"- Dora Korpar, 2015-10-19\n";
+    
+    // Corrected the function name from "whrite" to "write" and added a semicolon
+    write(2, quo, 59);
+    
+    // Added a return statement to indicate an error (1)
+    return (1);
 }
+
